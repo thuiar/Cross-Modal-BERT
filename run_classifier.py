@@ -28,15 +28,15 @@ def main(i):
     parser = argparse.ArgumentParser()
 
     ## Required parameters
-    parser.add_argument("--data_dir", default='CM-BERT/data/text', type=str,
+    parser.add_argument("--data_dir", default='Cross-Modal-BERT-master/data/text', type=str,
                         help="The input data dir. Should contain the .tsv files (or other data files) for the task.")
-    parser.add_argument("--bert_model", default='CM-BERT/pre-trained BERT', type=str,
+    parser.add_argument("--bert_model", default='Cross-Modal-BERT-master/pre-trained BERT', type=str,
                         help="Bert pre-trained model selected in the list: bert-base-uncased, "
                         "bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, "
                         "bert-base-multilingual-cased, bert-base-chinese.")
     parser.add_argument("--task_name", default='Multi', type=str,
                         help="The name of the task to train.")
-    parser.add_argument("--output_dir", default='CM-BERT/CM-BERT_output', type=str,
+    parser.add_argument("--output_dir", default='Cross-Modal-BERT-master/CM-BERT_output', type=str,
                         help="The output directory where the model predictions and checkpoints will be written.")
 
     ## Other parameters
@@ -167,7 +167,7 @@ def main(i):
     global_step = 0
     nb_tr_steps = 0
     tr_loss = 0
-    train_audio,valid_audio,test_audio= pickle.load(open('CM-BERT/data/audio/MOSI_cmu_audio_CLS.pickle','rb'))
+    train_audio,valid_audio,test_audio= pickle.load(open('Cross-Modal-BERT-master/data/audio/MOSI_cmu_audio_CLS.pickle','rb'))
     max_acc = 0
     min_loss = 100
     if args.do_train:
@@ -262,7 +262,7 @@ def main(i):
                     logger.info("  %s = %s", key, str(result[key]))
                     writer.write("%s = %s\n" % (key, str(result[key])))
 
-            os.system('mkdir CM-BERT/CM-BERT_output')
+            
             # Save a trained model and the associated configuration
             if eval_loss<min_loss:
                 min_loss = eval_loss
@@ -291,7 +291,7 @@ def main(i):
         test_sampler = SequentialSampler(test_data)
         test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=args.test_batch_size)
         model = BertForSequenceClassification.from_pretrained(args.bert_model, cache_dir=cache_dir, num_labels = num_labels)
-        model.load_state_dict(torch.load('CM-BERT/CM-BERT_output/pytorch_model.bin'))
+        model.load_state_dict(torch.load('Cross-Modal-BERT-master/CM-BERT_output/pytorch_model.bin'))
         model.to(device)
         model.eval()
         test_loss, test_accuracy = 0, 0
@@ -363,13 +363,14 @@ if __name__ == "__main__":
     corr_list = []
     acc7_list = []
     for i in range(5):
+        os.system('mkdir Cross-Modal-BERT-master/CM-BERT_output')
         results = main(i)
         acc_list.append(str(results['acc']))
         F1_list.append(str(results['F1']))
         mae_list.append(str(results['mae']))
         corr_list.append(str(results['corr']))
         acc7_list.append(str(results['acc7']))
-        os.system('rm -r CM-BERT/CM-BERT_output')
+        os.system('rm -r Cross-Modal-BERT-master/CM-BERT_output')
 
     acc_array = np.array(acc_list).astype(float)
     F1_array = np.array(F1_list).astype(float)
