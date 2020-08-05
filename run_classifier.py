@@ -88,11 +88,13 @@ def main(i):
         raise ValueError("Invalid gradient_accumulation_steps parameter: {}, should be >= 1".format(args.gradient_accumulation_steps))
 
     args.train_batch_size = args.train_batch_size // args.gradient_accumulation_steps
-    random.seed(seed_list[i])
-    np.random.seed(seed_list[i])
-    torch.manual_seed(seed_list[i])
+
+    seed_num = np.random.randint(1,10000)
+    random.seed(seed_num)
+    np.random.seed(seed_num)
+    torch.manual_seed(seed_num)
     if n_gpu > 0:
-        torch.cuda.manual_seed_all(seed_list[i])
+        torch.cuda.manual_seed_all(seed_num)
 
     if not args.do_train and not args.do_test:
         raise ValueError("At least one of `do_train` or `do_test` must be True.")
@@ -262,7 +264,6 @@ def main(i):
                     logger.info("  %s = %s", key, str(result[key]))
                     writer.write("%s = %s\n" % (key, str(result[key])))
 
-            
             # Save a trained model and the associated configuration
             if eval_loss<min_loss:
                 min_loss = eval_loss
@@ -356,7 +357,6 @@ def main(i):
         
 
 if __name__ == "__main__":
-    seed_list = [1,11,111,1111,11111]
     acc_list = []
     F1_list = []
     mae_list= []
