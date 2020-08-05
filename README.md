@@ -16,6 +16,7 @@ pip install -r requirements.txt
 
 2、Get the pre-trained BERT model and modify the --bert_model in run_classifier.py
 
+You can download the pre-trained BERT model from [pre-trained BERT model](https://drive.google.com/file/d/1dKSzsgXORN7WVaJJYvNzqFPCQbn-aJcb/view?usp=sharing), or you can use the following code to get it.
 ```
 wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
 unzip uncased_L-12_H-768_A-12.zip
