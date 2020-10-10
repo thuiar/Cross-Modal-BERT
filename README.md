@@ -40,7 +40,7 @@ MFM  | T+A+V | 36.2 | 78.1 | 78.1 | 0.951 | 0.662
 MCTN  | T+A+V | 35.6 | 79.3 | 79.1 | 0.909 | 0.676
 MulT  | T+A+V | 40.0 | 83.0 | 82.8 | 0.871 | 0.698
 T-BERT  | T+A+V | 41.5 | 83.2 | 82.3 | 0.784 | 0.774
-CM-BERT(ours)  | T+A+V | 44.9 | 84.5 | 84.5 | 0.729 | 0.791
+CM-BERT(ours)  | T+A | 44.9 | 84.5 | 84.5 | 0.729 | 0.791
 
 # Citation
 If you mentioned the method in your research, please cite this article:
