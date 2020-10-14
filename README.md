@@ -44,6 +44,7 @@ CM-BERT(ours)  | T+A | 44.9 | 84.5 | 84.5 | 0.729 | 0.791
 
 # Citation
 If you mentioned the method in your research, please cite this article:
+```
 @inproceedings{10.1145/3394171.3413690,
 author = {Yang, Kaicheng and Xu, Hua and Gao, Kai},
 title = {CM-BERT: Cross-Modal BERT for Text-Audio Sentiment Analysis},
@@ -61,3 +62,4 @@ keywords = {pretrained model, multimodal sentiment analysis, attention network},
 location = {Seattle, WA, USA},
 series = {MM '20}
 }
+```
